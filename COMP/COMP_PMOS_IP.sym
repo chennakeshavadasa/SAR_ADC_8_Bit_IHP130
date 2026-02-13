@@ -1,0 +1,50 @@
+v {xschem version=3.4.8RC file_version=1.3}
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"
+}
+V {}
+S {}
+F {}
+E {}
+L 4 350 -210 610 -160 {}
+L 4 350 -110 610 -160 {}
+L 4 560 -170 610 -170 {}
+L 4 560 -150 610 -150 {}
+L 4 352.5 -150 362.5 -150 {}
+L 4 357.5 -155 357.5 -145 {}
+L 4 352.5 -170 362.5 -170 {}
+L 4 537.5 -170 547.5 -170 {}
+L 4 537.5 -152.5 547.5 -152.5 {}
+L 4 542.5 -157.5 542.5 -147.5 {}
+L 7 460 -230 460 -210 {}
+L 7 440 -110 440 -90 {}
+L 7 510 -230 510 -210 {}
+L 7 610 -170 630 -170 {}
+L 7 610 -150 630 -150 {}
+L 7 330 -150 350 -150 {}
+L 7 330 -170 350 -170 {}
+L 7 540 -110 540 -90 {}
+L 7 490 -110 490 -90 {}
+B 5 457.5 -232.5 462.5 -227.5 {name=VDD sig_type=std_logic dir=inout}
+B 5 437.5 -92.5 442.5 -87.5 {name=CLK sig_type=std_logic dir=inout}
+B 5 507.5 -232.5 512.5 -227.5 {name=PBody sig_type=std_logic dir=inout}
+B 5 627.5 -172.5 632.5 -167.5 {name=VON sig_type=std_logic dir=inout}
+B 5 627.5 -152.5 632.5 -147.5 {name=VOP sig_type=std_logic dir=inout}
+B 5 327.5 -152.5 332.5 -147.5 {name=VIP sig_type=std_logic dir=inout}
+B 5 327.5 -172.5 332.5 -167.5 {name=VIN sig_type=std_logic dir=inout}
+B 5 537.5 -92.5 542.5 -87.5 {name=NBody sig_type=std_logic dir=inout}
+B 5 487.5 -92.5 492.5 -87.5 {name=AVSS sig_type=std_logic dir=inout}
+P 4 5 350 -210 350 -110 610 -110 610 -210 350 -210 {}
+T {@symname} 398 -166 0 0 0.3 0.3 {}
+T {@name} 585 -122 0 0 0.2 0.2 {}
+T {VDD} 475 -204 0 1 0.2 0.2 {}
+T {CLK} 435 -116 2 1 0.2 0.2 {}
+T {PBody} 525 -204 0 1 0.2 0.2 {}
+T {VON} 605 -184 0 1 0.2 0.2 {}
+T {VOP} 605 -144 0 1 0.2 0.2 {}
+T {VIP} 325 -136 2 1 0.2 0.2 {}
+T {VIN} 325 -176 2 1 0.2 0.2 {}
+T {NBody} 525 -116 2 1 0.2 0.2 {}
+T {AVSS} 475 -116 2 1 0.2 0.2 {}

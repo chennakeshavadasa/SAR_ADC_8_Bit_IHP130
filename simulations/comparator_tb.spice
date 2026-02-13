@@ -1,0 +1,76 @@
+** sch_path: /foss/designs/IHP-AnalogAcademy/modules/module_3_8_bit_SAR_ADC/part_1_comparator/testbench/comparator_tb.sch
+**.subckt comparator_tb
+V3 vdd GND DC 1.2
+V4 vbias GND DC 0.6
+V1 clk GND PULSE(0 1.2 0 0 0 5N {period})
+V2 vinp GND PULSE(595e-3 605e-3 0 tr 1S 1S)
+C1 vbias GND 6.4p m=1
+C2 vinp GND 6.4p m=1
+C4 outp GND 50f m=1
+C3 outm GND 50f m=1
+x2 vdd vbias vinp vbias outm outp clk GND dynamic_comparator
+**** begin user architecture code
+
+.lib cornerMOSlv.lib mos_tt
+
+
+
+.param temp=27
+.param clock = 100e6       ; 100 MHz clock
+.param period = {1/clock}
+.param num_cycles = 100
+.param tr = {num_cycles * period}
+
+.control
+save all
+* Operating point simulation
+op
+write comparator_tb.raw
+set appendwrite
+
+* Transient analysis
+.options meas_step_max=1e-10
+tran 500p 1u
+let vindiff = v(vinp) - v(vbias)
+let clk = v(clk)
+let vout = v(outp) - v(outm)
+
+meas TRAN rise_time TRIG v(outp) VAL=0.12  TD=9n RISE=4 TARG v(outp) VAL=1.08 TD=9n RISE=4
+meas TRAN fall_time TRIG v(outp) VAL=1.08  TD=9n RISE=4 TARG v(outp) VAL=0.12 TD=9n RISE=4
+
+write comparator_tb.raw
+.endc
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:
+*+  /foss/designs/IHP-AnalogAcademy/modules/module_3_8_bit_SAR_ADC/part_1_comparator/schematic/dynamic_comparator.sym # of pins=8
+** sym_path: /foss/designs/IHP-AnalogAcademy/modules/module_3_8_bit_SAR_ADC/part_1_comparator/schematic/dynamic_comparator.sym
+** sch_path: /foss/designs/IHP-AnalogAcademy/modules/module_3_8_bit_SAR_ADC/part_1_comparator/schematic/dynamic_comparator.sch
+.subckt dynamic_comparator vdd vbias v+ v- out- out+ clk gnd
+*.iopin vdd
+*.iopin gnd
+*.ipin v+
+*.ipin v-
+*.ipin vbias
+*.ipin clk
+*.opin out-
+*.opin out+
+XM13 net1 clk net2 vdd sg13_lv_pmos w=18u l=0.3u ng=4 m=1
+XM3 net2 vbias vdd vdd sg13_lv_pmos w=18u l=0.3u ng=4 m=1
+XM2 net4 v+ net1 vdd sg13_lv_pmos w=32u l=200n ng=4 m=1
+XM1 net3 v- net1 vdd sg13_lv_pmos w=32u l=200n ng=4 m=1
+XM4 out- net3 vdd vdd sg13_lv_pmos w=8u l=0.200u ng=1 m=1
+XM5 out+ net4 vdd vdd sg13_lv_pmos w=8u l=0.200u ng=1 m=1
+XM11 gnd net4 out+ gnd sg13_lv_nmos w=4.0u l=0.200u ng=1 m=1
+XM12 gnd net3 out- gnd sg13_lv_nmos w=4.0u l=0.200u ng=1 m=1
+XM6 gnd net3 net4 gnd sg13_lv_nmos w=4.0u l=0.200u ng=1 m=1
+XM10 gnd clk net4 gnd sg13_lv_nmos w=4.0u l=0.200u ng=1 m=1
+XM7 gnd clk net3 gnd sg13_lv_nmos w=4.0u l=0.200u ng=1 m=1
+XM8 gnd net4 net3 gnd sg13_lv_nmos w=4.0u l=0.200u ng=1 m=1
+.ends
+
+.GLOBAL GND
+.end

@@ -1,0 +1,37 @@
+** sch_path: /foss/designs/SAR_ADC_8_Bit_IHP130/COMP/COMP_NMOS_IP.sch
+**.subckt COMP_NMOS_IP VDD CLK PBody VON VOP VIP VIN NBody AVSS
+*.iopin VDD
+*.iopin CLK
+*.iopin PBody
+*.iopin VON
+*.iopin VOP
+*.iopin VIP
+*.iopin VIN
+*.iopin NBody
+*.iopin AVSS
+XMN_VIP net5 VIP net3 NBody sg13_lv_nmos w=1u l=0.13u ng=1 m=1
+XMN_VIN net4 VIN net3 NBody sg13_lv_nmos w=1u l=0.13u ng=1 m=1
+XMP_CRS_CP2 net1 net2 VDD PBody sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+XMP_CRS_CP1 net2 net1 VDD PBody sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+XMN_CRS_CP1 net2 net1 net5 NBody sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XMN_CRS_CP2 net1 net2 net4 NBody sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XMP_PC_OUT_P net1 CLK VDD PBody sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+XMP_PC_IP_P net4 CLK VDD PBody sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+XMP_PC_OUT_N net2 CLK VDD PBody sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+XMP_PC_IP_N net5 CLK VDD PBody sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+XMN_BIAS net3 CLK AVSS NBody sg13_lv_nmos w=1u l=0.13u ng=1 m=1
+.save v(net1)
+.save v(net2)
+.save v(net4)
+.save v(net3)
+.save v(vin)
+.save v(vip)
+.save v(clk)
+XM1 VOP net2 AVSS NBody sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XMP_CRS_CP3 VOP net2 VDD PBody sg13_lv_pmos w=1u l=0.13u ng=1 m=1
+XM2 VON net1 AVSS NBody sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XMP_CRS_CP4 VON net1 VDD PBody sg13_lv_pmos w=1u l=0.13u ng=1 m=1
+.save v(net5)
+.save v(clk)
+**.ends
+.end

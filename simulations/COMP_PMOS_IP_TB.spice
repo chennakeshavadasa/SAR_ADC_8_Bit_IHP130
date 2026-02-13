@@ -1,0 +1,249 @@
+** sch_path: /foss/designs/SAR_ADC_8_Bit_IHP130/COMP/COMP_PMOS_IP_TB.sch
+**.subckt COMP_PMOS_IP_TB
+V1 VDD GND 1.5
+V2 AVSS GND 0
+V3 CLK GND PULSE(0 1.5 0 100p 100p 200n 400n 1000)
+V4 VINP GND 0.795
+V5 VINN GND 0.8
+C1 VOUTN GND 500f m=1
+C2 VOUTP GND 500f m=1
+XM1 VDD VDD VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+x1 VDD CLK_B VDD VOUTN VOUTP VINP VINN AVSS AVSS COMP_PMOS_IP
+x2 CLK_B CLK VDD AVSS sg13g2_inv_1
+**** begin user architecture code
+
+
+**.ic v(voutn)=0 v(voutp)=1.5
+.include sg13g2_stdcell.spice
+.option wnflag=1
+.option savecurrents
+.temp 27
+.control
+save all
+op
+show m : gm : gmbs : gds : vds : vdsat : vgs : vth : id
+write COMP_PMOS_IP_TB.raw
+set appendwrite
+tran 10n 5u 1n
+plot v(voutn) v(voutp) v(clk) v(vinn)
+write COMP_PMOS_IP_TB.raw
+.endc
+
+
+
+
+
+.lib cornerMOSlv.lib mos_tt
+.lib cornerMOShv.lib mos_tt
+.lib cornerHBT.lib hbt_typ
+.lib cornerRES.lib res_typ
+.lib cornerCAP.lib cap_typ
+
+
+
+
+
+.save @n.xm1.nsg13_lv_pmos[ids]
+.save @n.xm1.nsg13_lv_pmos[gm]
+.save @n.xm1.nsg13_lv_pmos[gds]
+.save @n.xm1.nsg13_lv_pmos[vth]
+.save @n.xm1.nsg13_lv_pmos[vgs]
+.save @n.xm1.nsg13_lv_pmos[vdss]
+.save @n.xm1.nsg13_lv_pmos[vds]
+.save @n.xm1.nsg13_lv_pmos[cgg]
+.save @n.xm1.nsg13_lv_pmos[cgsol]
+.save @n.xm1.nsg13_lv_pmos[cgdol]
+.save @n.x1.xmp_vip.nsg13_lv_pmos[ids]
+.save @n.x1.xmp_vip.nsg13_lv_pmos[gm]
+.save @n.x1.xmp_vip.nsg13_lv_pmos[gds]
+.save @n.x1.xmp_vip.nsg13_lv_pmos[vth]
+.save @n.x1.xmp_vip.nsg13_lv_pmos[vgs]
+.save @n.x1.xmp_vip.nsg13_lv_pmos[vdss]
+.save @n.x1.xmp_vip.nsg13_lv_pmos[vds]
+.save @n.x1.xmp_vip.nsg13_lv_pmos[cgg]
+.save @n.x1.xmp_vip.nsg13_lv_pmos[cgsol]
+.save @n.x1.xmp_vip.nsg13_lv_pmos[cgdol]
+.save @n.x1.xmp_vin.nsg13_lv_pmos[ids]
+.save @n.x1.xmp_vin.nsg13_lv_pmos[gm]
+.save @n.x1.xmp_vin.nsg13_lv_pmos[gds]
+.save @n.x1.xmp_vin.nsg13_lv_pmos[vth]
+.save @n.x1.xmp_vin.nsg13_lv_pmos[vgs]
+.save @n.x1.xmp_vin.nsg13_lv_pmos[vdss]
+.save @n.x1.xmp_vin.nsg13_lv_pmos[vds]
+.save @n.x1.xmp_vin.nsg13_lv_pmos[cgg]
+.save @n.x1.xmp_vin.nsg13_lv_pmos[cgsol]
+.save @n.x1.xmp_vin.nsg13_lv_pmos[cgdol]
+.save @n.x1.xmp_crs_cp1.nsg13_lv_pmos[ids]
+.save @n.x1.xmp_crs_cp1.nsg13_lv_pmos[gm]
+.save @n.x1.xmp_crs_cp1.nsg13_lv_pmos[gds]
+.save @n.x1.xmp_crs_cp1.nsg13_lv_pmos[vth]
+.save @n.x1.xmp_crs_cp1.nsg13_lv_pmos[vgs]
+.save @n.x1.xmp_crs_cp1.nsg13_lv_pmos[vdss]
+.save @n.x1.xmp_crs_cp1.nsg13_lv_pmos[vds]
+.save @n.x1.xmp_crs_cp1.nsg13_lv_pmos[cgg]
+.save @n.x1.xmp_crs_cp1.nsg13_lv_pmos[cgsol]
+.save @n.x1.xmp_crs_cp1.nsg13_lv_pmos[cgdol]
+.save @n.x1.xmp_crs_cp2.nsg13_lv_pmos[ids]
+.save @n.x1.xmp_crs_cp2.nsg13_lv_pmos[gm]
+.save @n.x1.xmp_crs_cp2.nsg13_lv_pmos[gds]
+.save @n.x1.xmp_crs_cp2.nsg13_lv_pmos[vth]
+.save @n.x1.xmp_crs_cp2.nsg13_lv_pmos[vgs]
+.save @n.x1.xmp_crs_cp2.nsg13_lv_pmos[vdss]
+.save @n.x1.xmp_crs_cp2.nsg13_lv_pmos[vds]
+.save @n.x1.xmp_crs_cp2.nsg13_lv_pmos[cgg]
+.save @n.x1.xmp_crs_cp2.nsg13_lv_pmos[cgsol]
+.save @n.x1.xmp_crs_cp2.nsg13_lv_pmos[cgdol]
+.save @n.x1.xm5.nsg13_lv_pmos[ids]
+.save @n.x1.xm5.nsg13_lv_pmos[gm]
+.save @n.x1.xm5.nsg13_lv_pmos[gds]
+.save @n.x1.xm5.nsg13_lv_pmos[vth]
+.save @n.x1.xm5.nsg13_lv_pmos[vgs]
+.save @n.x1.xm5.nsg13_lv_pmos[vdss]
+.save @n.x1.xm5.nsg13_lv_pmos[vds]
+.save @n.x1.xm5.nsg13_lv_pmos[cgg]
+.save @n.x1.xm5.nsg13_lv_pmos[cgsol]
+.save @n.x1.xm5.nsg13_lv_pmos[cgdol]
+.save @n.x1.xmn_crs_cp2.nsg13_lv_nmos[ids]
+.save @n.x1.xmn_crs_cp2.nsg13_lv_nmos[gm]
+.save @n.x1.xmn_crs_cp2.nsg13_lv_nmos[gds]
+.save @n.x1.xmn_crs_cp2.nsg13_lv_nmos[vth]
+.save @n.x1.xmn_crs_cp2.nsg13_lv_nmos[vgs]
+.save @n.x1.xmn_crs_cp2.nsg13_lv_nmos[vdss]
+.save @n.x1.xmn_crs_cp2.nsg13_lv_nmos[vds]
+.save @n.x1.xmn_crs_cp2.nsg13_lv_nmos[cgg]
+.save @n.x1.xmn_crs_cp2.nsg13_lv_nmos[cgsol]
+.save @n.x1.xmn_crs_cp2.nsg13_lv_nmos[cgdol]
+.save @n.x1.xmn_crs_cp1.nsg13_lv_nmos[ids]
+.save @n.x1.xmn_crs_cp1.nsg13_lv_nmos[gm]
+.save @n.x1.xmn_crs_cp1.nsg13_lv_nmos[gds]
+.save @n.x1.xmn_crs_cp1.nsg13_lv_nmos[vth]
+.save @n.x1.xmn_crs_cp1.nsg13_lv_nmos[vgs]
+.save @n.x1.xmn_crs_cp1.nsg13_lv_nmos[vdss]
+.save @n.x1.xmn_crs_cp1.nsg13_lv_nmos[vds]
+.save @n.x1.xmn_crs_cp1.nsg13_lv_nmos[cgg]
+.save @n.x1.xmn_crs_cp1.nsg13_lv_nmos[cgsol]
+.save @n.x1.xmn_crs_cp1.nsg13_lv_nmos[cgdol]
+.save @n.x1.xmn_pc_out_p.nsg13_lv_nmos[ids]
+.save @n.x1.xmn_pc_out_p.nsg13_lv_nmos[gm]
+.save @n.x1.xmn_pc_out_p.nsg13_lv_nmos[gds]
+.save @n.x1.xmn_pc_out_p.nsg13_lv_nmos[vth]
+.save @n.x1.xmn_pc_out_p.nsg13_lv_nmos[vgs]
+.save @n.x1.xmn_pc_out_p.nsg13_lv_nmos[vdss]
+.save @n.x1.xmn_pc_out_p.nsg13_lv_nmos[vds]
+.save @n.x1.xmn_pc_out_p.nsg13_lv_nmos[cgg]
+.save @n.x1.xmn_pc_out_p.nsg13_lv_nmos[cgsol]
+.save @n.x1.xmn_pc_out_p.nsg13_lv_nmos[cgdol]
+.save @n.x1.xmn_pc_out_n.nsg13_lv_nmos[ids]
+.save @n.x1.xmn_pc_out_n.nsg13_lv_nmos[gm]
+.save @n.x1.xmn_pc_out_n.nsg13_lv_nmos[gds]
+.save @n.x1.xmn_pc_out_n.nsg13_lv_nmos[vth]
+.save @n.x1.xmn_pc_out_n.nsg13_lv_nmos[vgs]
+.save @n.x1.xmn_pc_out_n.nsg13_lv_nmos[vdss]
+.save @n.x1.xmn_pc_out_n.nsg13_lv_nmos[vds]
+.save @n.x1.xmn_pc_out_n.nsg13_lv_nmos[cgg]
+.save @n.x1.xmn_pc_out_n.nsg13_lv_nmos[cgsol]
+.save @n.x1.xmn_pc_out_n.nsg13_lv_nmos[cgdol]
+.save @n.x1.xmn_pc_ip_p.nsg13_lv_nmos[ids]
+.save @n.x1.xmn_pc_ip_p.nsg13_lv_nmos[gm]
+.save @n.x1.xmn_pc_ip_p.nsg13_lv_nmos[gds]
+.save @n.x1.xmn_pc_ip_p.nsg13_lv_nmos[vth]
+.save @n.x1.xmn_pc_ip_p.nsg13_lv_nmos[vgs]
+.save @n.x1.xmn_pc_ip_p.nsg13_lv_nmos[vdss]
+.save @n.x1.xmn_pc_ip_p.nsg13_lv_nmos[vds]
+.save @n.x1.xmn_pc_ip_p.nsg13_lv_nmos[cgg]
+.save @n.x1.xmn_pc_ip_p.nsg13_lv_nmos[cgsol]
+.save @n.x1.xmn_pc_ip_p.nsg13_lv_nmos[cgdol]
+.save @n.x1.xmn_pc_ip_n.nsg13_lv_nmos[ids]
+.save @n.x1.xmn_pc_ip_n.nsg13_lv_nmos[gm]
+.save @n.x1.xmn_pc_ip_n.nsg13_lv_nmos[gds]
+.save @n.x1.xmn_pc_ip_n.nsg13_lv_nmos[vth]
+.save @n.x1.xmn_pc_ip_n.nsg13_lv_nmos[vgs]
+.save @n.x1.xmn_pc_ip_n.nsg13_lv_nmos[vdss]
+.save @n.x1.xmn_pc_ip_n.nsg13_lv_nmos[vds]
+.save @n.x1.xmn_pc_ip_n.nsg13_lv_nmos[cgg]
+.save @n.x1.xmn_pc_ip_n.nsg13_lv_nmos[cgsol]
+.save @n.x1.xmn_pc_ip_n.nsg13_lv_nmos[cgdol]
+.save @n.x1.xm12.nsg13_lv_nmos[ids]
+.save @n.x1.xm12.nsg13_lv_nmos[gm]
+.save @n.x1.xm12.nsg13_lv_nmos[gds]
+.save @n.x1.xm12.nsg13_lv_nmos[vth]
+.save @n.x1.xm12.nsg13_lv_nmos[vgs]
+.save @n.x1.xm12.nsg13_lv_nmos[vdss]
+.save @n.x1.xm12.nsg13_lv_nmos[vds]
+.save @n.x1.xm12.nsg13_lv_nmos[cgg]
+.save @n.x1.xm12.nsg13_lv_nmos[cgsol]
+.save @n.x1.xm12.nsg13_lv_nmos[cgdol]
+.save @n.x1.xm13.nsg13_lv_pmos[ids]
+.save @n.x1.xm13.nsg13_lv_pmos[gm]
+.save @n.x1.xm13.nsg13_lv_pmos[gds]
+.save @n.x1.xm13.nsg13_lv_pmos[vth]
+.save @n.x1.xm13.nsg13_lv_pmos[vgs]
+.save @n.x1.xm13.nsg13_lv_pmos[vdss]
+.save @n.x1.xm13.nsg13_lv_pmos[vds]
+.save @n.x1.xm13.nsg13_lv_pmos[cgg]
+.save @n.x1.xm13.nsg13_lv_pmos[cgsol]
+.save @n.x1.xm13.nsg13_lv_pmos[cgdol]
+.save @n.x1.xm14.nsg13_lv_nmos[ids]
+.save @n.x1.xm14.nsg13_lv_nmos[gm]
+.save @n.x1.xm14.nsg13_lv_nmos[gds]
+.save @n.x1.xm14.nsg13_lv_nmos[vth]
+.save @n.x1.xm14.nsg13_lv_nmos[vgs]
+.save @n.x1.xm14.nsg13_lv_nmos[vdss]
+.save @n.x1.xm14.nsg13_lv_nmos[vds]
+.save @n.x1.xm14.nsg13_lv_nmos[cgg]
+.save @n.x1.xm14.nsg13_lv_nmos[cgsol]
+.save @n.x1.xm14.nsg13_lv_nmos[cgdol]
+.save @n.x1.xm15.nsg13_lv_pmos[ids]
+.save @n.x1.xm15.nsg13_lv_pmos[gm]
+.save @n.x1.xm15.nsg13_lv_pmos[gds]
+.save @n.x1.xm15.nsg13_lv_pmos[vth]
+.save @n.x1.xm15.nsg13_lv_pmos[vgs]
+.save @n.x1.xm15.nsg13_lv_pmos[vdss]
+.save @n.x1.xm15.nsg13_lv_pmos[vds]
+.save @n.x1.xm15.nsg13_lv_pmos[cgg]
+.save @n.x1.xm15.nsg13_lv_pmos[cgsol]
+.save @n.x1.xm15.nsg13_lv_pmos[cgdol]
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  /foss/designs/SAR_ADC_8_Bit_IHP130/COMP/COMP_PMOS_IP.sym # of pins=9
+** sym_path: /foss/designs/SAR_ADC_8_Bit_IHP130/COMP/COMP_PMOS_IP.sym
+** sch_path: /foss/designs/SAR_ADC_8_Bit_IHP130/COMP/COMP_PMOS_IP.sch
+.subckt COMP_PMOS_IP VDD CLK PBody VON VOP VIP VIN NBody AVSS
+*.iopin VDD
+*.iopin CLK
+*.iopin PBody
+*.iopin VON
+*.iopin VOP
+*.iopin VIP
+*.iopin VIN
+*.iopin NBody
+*.iopin AVSS
+XMP_VIP net4 VIP net1 PBody sg13_lv_pmos w=3u l=0.13u ng=1 m=8
+XMP_VIN net5 VIN net1 PBody sg13_lv_pmos w=3u l=0.13u ng=1 m=8
+XMP_CRS_CP1 net3 net2 net4 PBody sg13_lv_pmos w=1u l=0.13u ng=1 m=8
+XMP_CRS_CP2 net2 net3 net5 PBody sg13_lv_pmos w=1u l=0.13u ng=1 m=8
+XM5 net1 CLK VDD PBody sg13_lv_pmos w=1u l=0.13u ng=1 m=8
+XMN_CRS_CP2 net2 net3 AVSS NBody sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XMN_CRS_CP1 net3 net2 AVSS NBody sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XMN_PC_OUT_P net4 CLK AVSS NBody sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XMN_PC_OUT_N net5 CLK AVSS NBody sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XMN_PC_IP_P net3 CLK AVSS NBody sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XMN_PC_IP_N net2 CLK AVSS NBody sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+.save v(vip)
+.save v(vin)
+XM12 VOP net3 AVSS NBody sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM13 VOP net3 VDD PBody sg13_lv_pmos w=1u l=0.13u ng=1 m=1
+XM14 VON net2 AVSS NBody sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM15 VON net2 VDD PBody sg13_lv_pmos w=1u l=0.13u ng=1 m=1
+.save v(net1)
+.save v(net5)
+.save v(net4)
+.save v(net3)
+.save v(net2)
+.ends
+
+.GLOBAL GND
+.end
